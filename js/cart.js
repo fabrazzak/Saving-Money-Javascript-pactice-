@@ -81,11 +81,11 @@ document.getElementById('calculate').addEventListener('click', function(){
 
         //  Total expenses  and Balance 
     const balance= incomeMoney - totalCost;
-    if(balance<totalCost && incomeMoney < -1 ){
+    if(incomeMoney < totalCost ){
         document.getElementById('total-expenses').innerText=totalCost +   " . Your total expenses high";
        const expensesErroe= document.getElementById('total-expenses');
        expensesErroe.style.color='red';
-       document.getElementById('blance').innerText=incomeMoney;
+       document.getElementById('blance').innerText="";
 
     }
     else{
@@ -105,18 +105,31 @@ document.getElementById('save-button').addEventListener('click',function(){
     const saveMoneyParcentice = inputNumber('save-input');
 
     const calculateSavingAmount= (saveMoneyParcentice * incomeMoney) / 100 ;
+    
 
     document.getElementById('saving-amount').innerText=calculateSavingAmount;
-   
-    console.log( document.getElementById('saving-amount').innerText);
-   
-   
-
     const previousBalance= document.getElementById('blance').innerText;
+   
+   
+if(calculateSavingAmount<previousBalance){
     const remainingBalance= previousBalance-calculateSavingAmount;
     document.getElementById('remaining-blance').innerText=remainingBalance;
-     console.log(remainingBalance);
+    document.getElementById('saving-erro').innerText='';
+    
 
+}else{
+
+    document.getElementById('saving-erro').innerText='Your Balance is low.';
+    document.getElementById('saving-erro').style.color='red';
+
+
+}
+
+document.getElementById('remaining-blance').innerText=remainingBalance;
+   
+
+  
+    
 
 }) 
 
